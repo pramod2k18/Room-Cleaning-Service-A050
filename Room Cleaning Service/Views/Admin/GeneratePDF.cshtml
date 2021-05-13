@@ -1,0 +1,142 @@
+﻿
+@{ ViewBag.Title = "Generate PDF"; }
+
+
+
+<style>
+    body {
+        /* background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.5)), url(/imgs/adminIndex.jpg);*/
+        background-color: #a4c3b2;
+        min-height: 100vh;
+        background-position: center;
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+        color: #fff;
+        display: flex;
+        flex-direction: column;
+        justify-content: stretch;
+    }
+
+    .headers {
+        margin-top: 150px;
+        margin-bottom: 50px;
+    }
+
+    .button-color {
+        background-color: #1BBC9C;
+        border-radius: 30px;
+        color: white;
+        font-weight: bold;
+        width: 150px;
+        height: 50px;
+    }
+
+    .back {
+        margin-top: 50px;
+    }
+
+    .cards {
+        margin-top: 50px;
+    }
+
+    .containers {
+        max-width: 100%;
+        margin: 0 50px;
+        padding: 0 1rem;
+    }
+
+    .centered {
+        margin-left: 100px;
+    }
+
+
+</style>
+
+
+<body>
+    <div class="containers">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <a class="navbar-brand" href="@Url.Action("Index","FrontPage")" style="font-size: 2.5em">Room Cleaning</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+
+        </div>
+    </nav>
+
+    <div class="headers">
+        <h2>Generate PDF</h2>
+    </div>
+
+
+    <div class="row row-cols-1 row-cols-md-3 g-4 cards">
+        <div class="col">
+            <div class="card text-white bg-dark mb-3" style="max-width: 18rem;">
+                <div class="card-header">SERVICES</div>
+                <div class="card-body">
+                    <h5 class="card-title">VIEW SERVICES</h5>
+
+                    <div class="form-group">
+                        <div class="button col-md-offset-2 col-md-10">
+                            @*<button class="button-color">@Html.ActionLink("Approve Cleaners", "Approve", "Admin")</button>*@
+                            <input type="button"
+                                   value="VIEW"
+                                   class="button-color"
+                                   onclick="location.href='@Url.Action("ServicesList", "Admin" )'" />
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="col">
+            <div class="card text-white bg-dark mb-3" style="max-width: 18rem;">
+                <div class="card-header">FEEDBACKS</div>
+                <div class="card-body">
+                    <h5 class="card-title">VIEW FEEDBACKS</h5>
+
+                    <div class="form-group">
+                        <div class="button col-md-offset-2 col-md-10">
+                            @*<button class="button-color">@Html.ActionLink("Approve Cleaners", "Approve", "Admin")</button>*@
+                            <input type="button"
+                                   value="VIEW"
+                                   class="button-color"
+                                   onclick="location.href='@Url.Action("FeedbackList", "Admin" )'" />
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="col">
+            <div class="card text-white bg-dark mb-3" style="max-width: 18rem;">
+                <div class="card-header">CLEANERS</div>
+                <div class="card-body">
+                    <h5 class="card-title">VIEW CLEANERS</h5>
+
+                    <div class="form-group">
+                        <div class="button col-md-offset-2 col-md-10">
+                            @*<button class="button-color">@Html.ActionLink("Approve Cleaners", "Approve", "Admin")</button>*@
+                            <input type="button"
+                                   value="VIEW"
+                                   class="button-color"
+                                   onclick="location.href='@Url.Action("CleanerList", "Admin" )'" />
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        
+
+    </div>
+    <div class="back">
+        @Html.ActionLink("BACK", "Index")
+    </div>
+</div>
+</body>

@@ -1,0 +1,184 @@
+﻿@model RoomCleaning.Models.ForgotUserid
+
+@{ ViewBag.Title = "ForgotUserId"; }
+
+
+
+
+<style>
+    body {
+        /* background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.5)), url(/imgs/adminIndex.jpg);*/
+        background-color: #a4c3b2;
+        min-height: 100vh;
+        background-position: center;
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+        color: #fff;
+        display: flex;
+        flex-direction: column;
+        justify-content: stretch;
+        overflow-x: hidden;
+    }
+
+    .headers {
+        margin-top: 100px;
+        margin-bottom: 0px;
+    }
+
+    .button-color {
+        background-color: #1BBC9C;
+        border-radius: 30px;
+        color: white;
+        font-weight: bold;
+        width: 150px;
+        height: 50px;
+    }
+
+    .outline {
+        border-radius: 30px;
+        height: 40px;
+    }
+
+    .contents {
+        font-size: 1.2rem;
+    }
+
+    .title {
+        font-size: 1.1rem;
+        font-weight: 600;
+        margin-left: 20px;
+        text-align: left;
+    }
+
+    input[type="checkbox"] {
+        height: 20px;
+        width: 20px;
+        margin-left: 15px;
+    }
+
+
+    .button {
+        margin-left: 150px;
+    }
+
+    .back {
+        margin-top: 20px;
+        margin-left: 100px;
+        margin-bottom: 5px;
+        font-size: 1.15rem;
+    }
+
+    .containers {
+        max-width: 100%;
+        margin: 0 50px;
+        padding: 0 1rem;
+    }
+
+    .centered {
+        margin-left: 100px;
+    }
+</style>
+
+
+<body>
+    <div class="containers">
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+            <a class="navbar-brand" href="@Url.Action("Index","FrontPage")" style="font-size: 2.5em">Room Cleaning</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+
+            </div>
+        </nav>
+
+
+
+
+
+
+        @if (ViewBag.Status != null && Convert.ToBoolean(ViewBag.Status))
+        {
+            if (ViewBag.Message != null)
+            {
+                <div class="headers centered">
+                    <h2>Recovered Sucessfully!</h2>
+                </div>
+                <div class=" alert alert-success centered" style="margin-top: 60px; padding: 20px; font-size: 1.15rem">
+                    <strong>@ViewBag.Message</strong>
+                </div>
+            }
+
+        }
+        else
+        {
+            using (Html.BeginForm())
+            {
+                @Html.AntiForgeryToken()
+                <div class="headers centered">
+                    <h2>Forgot User ID</h2>
+                </div>
+
+                <div class="form-horizontal centered">
+                    @*<h4>ForgotUserid</h4>*@
+
+                    <hr />
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.ContactNumber, htmlAttributes: new { @class = "title control-label col-md-2" })
+                        <div class="col-md-3">
+                            @Html.EditorFor(model => model.ContactNumber, new { htmlAttributes = new { @class = "outline form-control" } })
+                            @Html.ValidationMessageFor(model => model.ContactNumber, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Ques1, htmlAttributes: new { @class = "title control-label col-md-5" })
+                        <div class="col-md-3">
+                            @Html.EditorFor(model => model.Ques1, new { htmlAttributes = new { @class = "outline form-control" } })
+                            @Html.ValidationMessageFor(model => model.Ques1, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Ques2, htmlAttributes: new { @class = "title control-label col-md-5" })
+                        <div class="col-md-3">
+                            @Html.EditorFor(model => model.Ques2, new { htmlAttributes = new { @class = "outline form-control" } })
+                            @Html.ValidationMessageFor(model => model.Ques2, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Ques3, htmlAttributes: new { @class = "title control-label col-md-5" })
+                        <div class="col-md-3">
+                            @Html.EditorFor(model => model.Ques3, new { htmlAttributes = new { @class = "outline form-control" } })
+                            @Html.ValidationMessageFor(model => model.Ques3, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-md-offset-2 col-md-10">
+                            <input type="submit" value="Submit" class="btn button-color" />
+                        </div>
+                    </div>
+                </div> if (ViewBag.Message != null)
+                {
+                    <div class=" alert alert-danger centered" style="color:red">
+                        <strong>Error : @ViewBag.Message</strong>
+                    </div>
+                }
+            }
+        }
+
+
+        <div class="back">
+            @Html.ActionLink("Back to Login", "Login", "user")
+        </div>
+    </div>
+</body>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
+

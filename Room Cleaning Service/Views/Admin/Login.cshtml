@@ -1,0 +1,186 @@
+﻿@model RoomCleaning.Models.AdminLogin
+
+@{ ViewBag.Title = "Login"; }
+
+
+<style>
+    body {
+        background-image: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.7)), url(/imgs/Header1.jpg);
+        min-height: 100vh;
+        background-position: center;
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+        color: #fff;
+        display: flex;
+        flex-direction: column;
+        justify-content: stretch;
+        overflow-x: hidden;
+    }
+
+    .contents {
+        margin: 250px 100px;
+        text-align: left;
+    }
+
+    .container {
+        margin: 10px 300px;
+        overflow-x: hidden;
+        overflow-y: hidden;
+    }
+
+    .headers {
+        margin-top: 100px;
+    }
+
+    .outline {
+        border-radius: 30px;
+        height: 50px;
+    }
+
+    .title {
+        font-size: 1.5rem;
+        margin-left: 20px;
+        text-align: left;
+    }
+
+    input[type="checkbox"] {
+        height: 20px;
+        width: 20px;
+        margin-left: 15px;
+    }
+
+    .button {
+        margin-left: 220px;
+    }
+
+    .button-color {
+        background-color: #1BBC9C;
+        border-radius: 30px;
+        color: white;
+        font-weight: bold;
+        width: 150px;
+        height: 50px;
+    }
+
+    .forgot-password {
+        float: right;
+        margin-top: 4px;
+        margin-right: 340px;
+        font-size: 20px;
+        color: #fff;
+    }
+
+    .forgot-email {
+        float: left;
+        margin-top: 5px;
+        margin-left: 130px;
+        font-size: 20px;
+        color: #fff;
+    }
+
+    .remember-me {
+        margin-top: 10px;
+    }
+
+    input[type=text], [type=email] {
+        font-size: 20px;
+    }
+
+    input[type=password] {
+        font-size: 30px;
+    }
+
+    .containers {
+        max-width: 100%;
+        margin: 0 50px;
+        padding: 0 1rem;
+    }
+
+    .centered {
+        margin-left: 100px;
+    }
+
+</style>
+
+<body>
+    <div class="containers">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <a class="navbar-brand" href="@Url.Action("Index","FrontPage")" style="font-size: 2.5em">Room Cleaning</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="@Url.Action("Login","User")" style="font-size: 1.25em">User Login</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="@Url.Action("Login","Cleaner")" style="font-size: 1.25em">Cleaner Login</a>
+                </li>
+
+            </ul>
+        </div>
+    </nav>
+
+    <div class="headers centered">
+        <h2>Admin Login</h2>
+    </div>
+
+
+    <div class="container">
+
+        @using (Html.BeginForm())
+        {
+    @Html.AntiForgeryToken()
+
+                    <div class="form-horizontal centered">
+                        @*<h4>AdminLogin</h4>
+                        <hr />*@
+                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                        <div class="form-group">
+                            <i class="fas fa-user fa-lg title"></i>@Html.LabelFor(model => model.AdminID, htmlAttributes: new { @class = "title control-label col-md-2" })
+                            <div class="col-md-6">
+                                @Html.EditorFor(model => model.AdminID, new { htmlAttributes = new { @class = "outline form-control" } })
+                                @Html.ValidationMessageFor(model => model.AdminID, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <i class="fas fa-lock title"></i>@Html.LabelFor(model => model.Password, htmlAttributes: new { @class = "title control-label col-md-2" })
+                            <div class="col-md-6">
+                                @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "outline form-control" } })
+                                @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-group form-check-inline">
+                            <div class="form-group form-check-inline col-md-80">
+                                <div class="checkbox">
+                                    @Html.EditorFor(model => model.RememberMe)
+                                    @Html.ValidationMessageFor(model => model.RememberMe, "", new { @class = "text-danger" })
+                                </div>
+                                @Html.LabelFor(model => model.RememberMe, htmlAttributes: new { @class = "title remember-me control-label col-md-10" })
+
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="button col-md-offset-2 col-md-10">
+                                <input type="submit" value="LOG IN" class="btn button-color" />
+                            </div>
+                        </div>
+                    </div>}
+        <h4 style="color:red">@ViewBag.Message</h4>
+       </div>
+</div>
+</body>
+
+        @section Scripts {
+            <script src="~/Scripts/jquery-3.4.1.min.js"></script>
+            <script src="~/Scripts/jquery.validate.min.js"></script>
+            <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+
+            @Scripts.Render("~/bundles/jqueryval")
+        }
+

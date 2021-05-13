@@ -1,0 +1,210 @@
+﻿@model IEnumerable<RoomCleaning.Models.Service>
+
+@{ ViewBag.Title = "ServiceBookingCleaner"; }
+
+
+
+<style>
+    body {
+        /* background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.5)), url(/imgs/adminIndex.jpg);*/
+        background-color: #a4c3b2;
+        min-height: 100vh;
+        background-position: center;
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+        color: #fff;
+        display: flex;
+        flex-direction: column;
+        justify-content: stretch;
+    }
+
+    .headers {
+        margin-top: 120px;
+        margin-bottom: 50px;
+    }
+
+    .move {
+        margin-top: 50px;
+        margin-left: 210px;
+    }
+
+    .move-pdf {
+        margin-top: 50px;
+        /*margin-left: 210px;*/
+    }
+
+    .button-color {
+        background-color: #1BBC9C;
+        border-radius: 30px;
+        color: white;
+        font-weight: bold;
+        width: 150px;
+        height: 50px;
+    }
+
+    .table-spacing {
+        padding: 10px 0;
+        font-size: 1.25rem;
+        font-weight: 600;
+    }
+
+    .content-spacing {
+        padding-left: 90px;
+        font-size: 1.25rem;
+        font-weight: 400;
+    }
+
+    input[type="checkbox"] {
+        height: 20px;
+        width: 20px;
+        margin-left: 10px;
+        background: #4cff00;
+    }
+
+    .links {
+        margin-top: 50px;
+        margin-left: 15px;
+        font-size: 1.15rem;
+    }
+
+    .containers {
+        max-width: 100%;
+        margin: 0 50px;
+        padding: 0 1rem;
+    }
+
+    .centered {
+        margin-left: 100px;
+    }
+
+    .back {
+        margin-top: 50px;
+    }
+</style>
+
+<body>
+    <div class="containers">
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+            <a class="navbar-brand" href="@Url.Action("Index","FrontPage")" style="font-size: 2.5em">Room Cleaning</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                @*<ul class="navbar-nav ml-auto">
+                                    <li class="nav-item">
+                                        @if (Request.IsAuthenticated)
+                                        {
+                                            using (Html.BeginForm("Logout", "Admin", FormMethod.Post, new { id = "logoutform" }))
+                                            {
+                            <a class="nav-link" style="font-size: 1.25em" href="javascript:document.getElementById('logoutform').submit()">Logout</a>}
+                    }
+                                    </li>
+
+                                </ul>*@
+            </div>
+        </nav>
+
+        <div class="headers">
+            <h2>Service Booking Cleaner</h2>
+        </div>
+
+        @if (ViewBag.Status == true)
+        {
+<table class="table table-dark table-striped table-hover" style="font-size: 1.15rem">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.OrderId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.UserEmail)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.RoomCount)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Address)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Location)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TimeSlot)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ContactNumber)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Date)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Status_Cleaner)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Service_Status)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Cleaner_Id)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+<tr>
+    <td>
+        @Html.DisplayFor(modelItem => item.OrderId)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.UserEmail)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.RoomCount)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Address)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Location)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.TimeSlot)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.ContactNumber)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Date)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Status_Cleaner)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Service_Status)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Cleaner_Id)
+    </td>
+    <td>
+        @Html.ActionLink("Edit", "EditServiceBookingCleaner", new { id = item.OrderId })
+    </td>
+</tr>
+}
+
+</table> }
+else
+{
+<div class=" alert alert-danger">
+    <strong>@ViewBag.Message</strong>
+</div>}
+
+        <div class="form-group back">
+            <table>
+                <tr>
+                    <td style="padding-right: 10px">@Html.ActionLink("BACK", "CleanerIndex", "Cleaner")</td>
+                </tr>
+            </table>
+        </div>
+
+    </div>
+</body>

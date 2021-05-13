@@ -1,0 +1,246 @@
+﻿@using RoomCleaning.Models;
+@Model dynamic;
+@{ ViewBag.Title = "Filter";
+    Layout = null; }                                                                         @*changed*@
+
+    <head>
+        @*changed*@
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        @Styles.Render("~/Content/css")
+        @Scripts.Render("~/bundles/modernizr")
+
+    </head>
+
+
+
+    <style>
+    body {
+        /* background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.5)), url(/imgs/adminIndex.jpg);*/
+        background-color: #a4c3b2;
+        min-height: 100vh;
+        background-position: center;
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+        color: #fff;
+        display: flex;
+        flex-direction: column;
+        justify-content: stretch;
+    }
+
+    .headers {
+        margin-top: 100px;
+        margin-bottom: 50px;
+    }
+
+       a.my-class {
+        color: #fff;
+    }
+
+
+        a.my-class:active {
+            color: #fff;
+        }
+
+        a.my-class:link {
+            color: #fff;
+        }
+
+        a.my-class:visited {
+            color: #fff;
+        }
+
+        a.my-class:hover {
+            color: #999999;
+        }
+
+    .back {
+        margin: 50px 0;
+    }
+
+    .containers {
+        max-width: 100%;
+        margin: 0 30px;                                          @*changed*@
+        padding: 0 1rem;
+    }
+
+    .centered {
+        margin-left: 100px;
+    }
+
+    </style>
+
+
+    <body>
+        <div class="containers">
+            <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+                <a class="navbar-brand" href="@Url.Action("Index","FrontPage")" style="font-size: 2.5em">Room Cleaning</a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+
+                </div>
+            </nav>
+
+            <div class="headers">
+                <h2>Service List</h2>
+            </div>
+
+
+
+
+            @using (Html.BeginForm())
+            {
+                <span style="font-size:1.1rem">Location </span>@Html.DropDownList("location", new SelectList(ViewBag.Locationservice), new { @class = "btn btn-light btn-sm dropdown-toggle" })
+                <input type="submit" value="Search" class="btn btn-sm btn-light" />}
+            <br />
+            <table class="table table-dark table-striped table-hover">
+                @*changed*@
+                <tr style="font-size: 12px">
+                    @*changed*@
+                    <th>
+                        Order ID
+                    </th>
+                    <th>
+                        User
+                        Email
+                    </th>
+                    <th>
+                        Room
+                        Count
+                    </th>
+                    <th>
+                        Address
+                    </th>
+                    <th>
+                        Location
+                    </th>
+                    <th>
+                        TimeSlot
+                    </th>
+                    <th>
+                        Contact
+                        Number
+                    </th>
+                    <th>
+                        Date
+                    </th>
+                    <th>
+                        Allocated
+                        by Admin
+                    </th>
+                    <th>
+                        Confirmed
+                        by Cleaner
+                    </th>
+                    <th>
+                        Service Status
+                    </th>
+                    <th>
+                        Cleaner ID
+                    </th>
+                    <th>
+                        Payment
+                    </th>
+                </tr>
+
+                @foreach (Service item in Model.Services)
+                {
+                    <tr style="font-size: 12px">
+                        <td>@Html.DisplayFor(modelItem => item.OrderId) </td>
+                        <td>@Html.DisplayFor(modelItem => item.UserEmail) </td>
+                        <td>@Html.DisplayFor(modelItem => item.RoomCount) </td>
+                        <td>@Html.DisplayFor(modelItem => item.Address) </td>
+                        <td>@Html.DisplayFor(modelItem => item.Location) </td>
+                        <td>@Html.DisplayFor(modelItem => item.TimeSlot) </td>
+                        <td>@Html.DisplayFor(modelItem => item.ContactNumber) </td>
+                        <td>@Html.DisplayFor(modelItem => item.Date) </td>
+                        <td>@Html.DisplayFor(modelItem => item.Status_Admin) </td>
+                        <td>@Html.DisplayFor(modelItem => item.Status_Cleaner) </td>
+                        <td>@Html.DisplayFor(modelItem => item.Service_Status) </td>
+                        <td>@Html.DisplayFor(modelItem => item.Cleaner_Id) </td>
+                        <td>@Html.DisplayFor(modelItem => item.Payment) </td>
+                        <td>
+                            @Html.ActionLink("Edit", "EditServiceBooking", new { Orderid = item.OrderId }, new { @class = "my-class" })
+                        </td>
+                    </tr>
+                }
+            </table>
+
+            <div class="headers">
+                <h2>Cleaner List</h2>
+            </div>
+
+            @using (Html.BeginForm())
+            {
+                <span style="font-size: 1.1rem">Location </span>@Html.DropDownList("location", new SelectList(ViewBag.Locationcleaner), new { @class = "btn btn-light btn-sm dropdown-toggle" })
+                <input type="submit" value="Search" class="btn btn-sm btn-light" />}
+            <br />
+            <table class="table table-dark table-striped table-hover">
+                <tr style="font-size: 12px">
+                    <th>
+                        Cleaner ID
+                    </th>
+                    <th>
+                        First Name
+                    </th>
+                    <th>
+                        Last Name
+                    </th>
+                    <th>
+                        Gender
+                    </th>
+                    <th>
+                        Contact Number
+                    </th>
+                    <th>
+                        Location
+                    </th>
+                    <th>
+                        Cleaner Assigned
+                    </th>
+                </tr>
+
+                @foreach (Cleaner item in Model.Cleanerz)
+                {
+                    <tr style="font-size: 12px">
+                        <td>
+                            @Html.DisplayFor(modelItem => item.CleanerId)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.FirstName)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.LastName)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Gender)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.ContactNumber)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Location)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.CleanerAssigned)
+                        </td>
+                        <td>
+                            @Html.ActionLink("Edit", "EditCleanerlist", new { id = item.Id }, new { @class = "my-class" })
+                        </td>
+                    </tr>
+                }
+
+            </table>
+
+            <div class="form-horizontal back">
+                <table>
+                    <tr>
+                        <td style="padding-right: 10px">@Html.ActionLink("BACK", "Index", "Admin")</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </body>

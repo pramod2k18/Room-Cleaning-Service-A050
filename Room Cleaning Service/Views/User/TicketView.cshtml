@@ -1,0 +1,144 @@
+﻿@model IEnumerable<RoomCleaning.Models.Ticket>
+
+@{ ViewBag.Title = "TicketView"; }
+
+
+
+
+<style>
+    body {
+        /* background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.5)), url(/imgs/adminIndex.jpg);*/
+        background-color: #a4c3b2;
+        min-height: 100vh;
+        background-position: center;
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+        color: #fff;
+        display: flex;
+        flex-direction: column;
+        justify-content: stretch;
+    }
+
+    .headers {
+        margin-top: 150px;
+        margin-bottom: 50px;
+    }
+
+    .move {
+        margin-top: 50px;
+        margin-left: 210px;
+    }
+
+    .move-pdf {
+        margin-top: 50px;
+        /*margin-left: 210px;*/
+    }
+
+    a.my-class {
+        color: #fff;
+    }
+
+
+        a.my-class:active {
+            color: #fff;
+        }
+
+        a.my-class:link {
+            color: #fff;
+        }
+
+        a.my-class:visited {
+            color: #fff;
+        }
+
+        a.my-class:hover {
+            color: #999999;
+        }
+
+    .containers {
+        max-width: 100%;
+        margin: 0 50px;
+        padding: 0 1rem;
+    }
+
+    .back {
+        margin: 50px 0;
+    }
+</style>
+
+
+<body>
+    <div class="containers">
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+            <a class="navbar-brand" href="@Url.Action("Index","FrontPage")" style="font-size: 2.5em">Room Cleaning</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+
+            </div>
+        </nav>
+
+        <div class="headers">
+            <h2>Tickets</h2>
+        </div>
+        @if (Model.Count() != 0)
+        {
+    <table class="table table-dark table-striped table-hover">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Issue)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Description)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Date)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Resolution)
+            </th>
+            @*<th>
+                @Html.DisplayNameFor(model => model.Status)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.UserEmail)
+            </th>*@
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Issue)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Description)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Date)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Resolution)
+        </td>
+
+
+    </tr>}
+
+    </table> }
+                else
+                {
+    <div class="in-center">
+        <h2 style="color:white;">No Ticket to display.</h2><br />
+
+    </div>}
+        <div class="back">
+            @Html.ActionLink("BACK", "TicketCreate", "User")
+
+
+        </div>
+    </div>
+</body>
+

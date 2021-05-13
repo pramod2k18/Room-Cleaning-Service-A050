@@ -1,0 +1,213 @@
+﻿@model RoomCleaning.Models.Service
+
+@{ ViewBag.Title = "EditServiceBookingCleaner"; }
+
+
+
+<style>
+    body {
+        /* background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.5)), url(/imgs/adminIndex.jpg);*/
+        background-color: #a4c3b2;
+        min-height: 100vh;
+        background-position: center;
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+        color: #fff;
+        display: flex;
+        flex-direction: column;
+        justify-content: stretch;
+    }
+
+    .headers {
+        margin-top: 150px;
+        margin-bottom: 50px;
+    }
+
+    .button-color {
+        background-color: #1BBC9C;
+        border-radius: 30px;
+        color: white;
+        font-weight: bold;
+        width: 150px;
+        height: 50px;
+    }
+
+    .outline {
+        border-radius: 30px;
+        height: 50px;
+    }
+
+    .contents {
+        font-size: 1.2rem;
+        margin-left: 8px;
+    }
+
+    .title {
+        font-size: 1.3rem;
+        font-weight: 600;
+        margin-left: 20px;
+        text-align: left;
+    }
+
+    input[type="checkbox"] {
+        height: 20px;
+        width: 20px;
+        margin-left: 15px;
+    }
+
+
+    .button {
+        margin-left: 150px;
+    }
+
+    .back {
+        margin-top: 30px;
+        margin-left: 100px;
+        margin-bottom: 50px;
+        font-size: 1.15rem;
+    }
+
+    .containers {
+        max-width: 100%;
+        margin: 0 50px;
+        padding: 0 1rem;
+    }
+
+    .centered {
+        margin-left: 100px;
+    }
+
+    .text-colors {
+        color: black;
+    }
+</style>
+
+
+<body>
+    <div class="containers">
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+            <a class="navbar-brand" href="@Url.Action("Index","FrontPage")" style="font-size: 2.5em">Room Cleaning</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+
+            </div>
+        </nav>
+
+        <div class="headers centered">
+            <h2>Edit Service Booking - Cleaner</h2>
+        </div>
+
+
+        @using (Html.BeginForm())
+        {
+@Html.AntiForgeryToken()
+
+                <div class="form-horizontal centered">
+                    <hr />
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.OrderId, htmlAttributes: new { @class = "title control-label col-md-2" })
+                        <div class="col-md-3 contents text-colors">
+                            @Html.EditorFor(model => model.OrderId, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.OrderId, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.UserEmail, htmlAttributes: new { @class = "title control-label col-md-2" })
+                        <div class="col-md-3 contents text-colors">
+                            @Html.DisplayFor(model => model.UserEmail, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.UserEmail, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.RoomCount, htmlAttributes: new { @class = "title control-label col-md-2" })
+                        <div class="col-md-3 contents text-colors">
+                            @Html.DisplayFor(model => model.RoomCount, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.RoomCount, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Address, htmlAttributes: new { @class = "title control-label col-md-2" })
+                        <div class="col-md-3 contents text-colors">
+                            @Html.DisplayFor(model => model.Address, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.Address, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Location, htmlAttributes: new { @class = "title control-label col-md-2" })
+                        <div class="col-md-3 contents text-colors">
+                            @Html.DisplayFor(model => model.Location, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.Location, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.TimeSlot, htmlAttributes: new { @class = "title control-label col-md-2" })
+                        <div class="col-md-3 contents text-colors">
+                            @Html.DisplayFor(model => model.TimeSlot, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.TimeSlot, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.ContactNumber, htmlAttributes: new { @class = "title control-label col-md-2" })
+                        <div class="col-md-3 contents text-colors">
+                            @Html.DisplayFor(model => model.ContactNumber, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.ContactNumber, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Date, htmlAttributes: new { @class = "title control-label col-md-2" })
+                        <div class="col-md-3 contents text-colors">
+                            @Html.DisplayFor(model => model.Date, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.Date, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Status_Cleaner, htmlAttributes: new { @class = "title control-label col-md-2" })
+                        <div class="col-md-3 contents text-colors">
+                            @Html.EditorFor(model => model.Status_Cleaner, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.Status_Cleaner, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Service_Status, htmlAttributes: new { @class = "title control-label col-md-2" })
+                        <div class="col-md-3 contents text-colors">
+                            @Html.EditorFor(model => model.Service_Status, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.Service_Status, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Cleaner_Id, htmlAttributes: new { @class = "title control-label col-md-2" })
+                        <div class="col-md-3 contents text-colors">
+                            @Html.DisplayFor(model => model.Cleaner_Id, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.Cleaner_Id, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-md-offset-2 col-md-10">
+                            <input type="submit" value="Submit" class="btn button-color" />
+                        </div>
+                    </div>
+                </div>}
+
+        <div class="back">
+            @Html.ActionLink("Back to List", "ServiceBookingCleaner", "Cleaner")
+        </div>
+    </div>
+</body>
+
+        @section Scripts {
+            @Scripts.Render("~/bundles/jqueryval")
+        }
+

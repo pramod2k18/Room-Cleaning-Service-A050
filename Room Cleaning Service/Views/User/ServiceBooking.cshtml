@@ -1,0 +1,183 @@
+﻿@model RoomCleaning.Models.Service
+
+@{ ViewBag.Title = "ServiceBooking"; }
+
+
+<style>
+    body {
+        /* background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.5)), url(/imgs/adminIndex.jpg);*/
+        background-color: #a4c3b2;
+        min-height: 100vh;
+        background-position: center;
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+        color: #fff;
+        display: flex;
+        flex-direction: column;
+        justify-content: stretch;
+        overflow-x: hidden;
+    }
+
+    .headers {
+        margin-top: 150px;
+        margin-bottom: 50px;
+    }
+
+    .button-color {
+        background-color: #1BBC9C;
+        border-radius: 30px;
+        color: white;
+        font-weight: bold;
+        width: 150px;
+        height: 50px;
+    }
+
+    .outline {
+        border-radius: 30px;
+        height: 40px;
+    }
+
+    .contents {
+        font-size: 1.2rem;
+    }
+
+    .title {
+        font-size: 1.2rem;
+        font-weight: 600;
+        margin-left: 20px;
+        text-align: left;
+    }
+
+    input[type="checkbox"] {
+        height: 20px;
+        width: 20px;
+        margin-left: 15px;
+    }
+
+
+    .button {
+        margin-left: 150px;
+    }
+
+    .back {
+        margin-top: 50px;
+        margin-left: 100px;
+        margin-bottom: 50px;
+        font-size: 1.15rem;
+    }
+
+    .containers {
+        max-width: 100%;
+        margin: 0 50px;
+        padding: 0 1rem;
+    }
+    .centered {
+        margin-left: 100px;
+    }
+
+</style>
+
+
+<body>
+    <div class="containers">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <a class="navbar-brand" href="@Url.Action("Index","FrontPage")" style="font-size: 2.5em">Room Cleaning</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+
+        </div>
+    </nav>
+
+    <div class="headers centered">
+        <h2>Book Service</h2>
+    </div>
+
+
+
+    @using (Html.BeginForm())
+    {
+@Html.AntiForgeryToken()
+
+                <div class="form-horizontal centered">
+                    @*<h4>Service</h4>
+                    <hr />*@
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.UserEmail, htmlAttributes: new { @class = "title control-label col-md-2" })
+                        <div class="col-md-4">
+                            @Html.EditorFor(model => model.UserEmail, new { htmlAttributes = new { @class = "outline form-control" } })
+                            @Html.ValidationMessageFor(model => model.UserEmail, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.RoomCount, htmlAttributes: new { @class = "title control-label col-md-2" })
+                        <div class="col-md-4">
+                            @Html.EditorFor(model => model.RoomCount, new { htmlAttributes = new { @class = "outline form-control" } })
+                            @Html.ValidationMessageFor(model => model.RoomCount, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Address, htmlAttributes: new { @class = "title control-label col-md-2" })
+                        <div class="col-md-4">
+                            @Html.EditorFor(model => model.Address, new { htmlAttributes = new { @class = "outline form-control" } })
+                            @Html.ValidationMessageFor(model => model.Address, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Location, htmlAttributes: new { @class = "title control-label col-md-2" })
+                        <div class="col-md-4">
+                            @Html.EditorFor(model => model.Location, new { htmlAttributes = new { @class = "outline form-control" } })
+                            @Html.ValidationMessageFor(model => model.Location, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.TimeSlot, htmlAttributes: new { @class = "title control-label col-md-2" })
+                        <div class="col-md-4">
+                            @Html.EditorFor(model => model.TimeSlot, new { htmlAttributes = new { @class = "outline form-control" } })
+                            @Html.ValidationMessageFor(model => model.TimeSlot, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.ContactNumber, htmlAttributes: new { @class = "title control-label col-md-2" })
+                        <div class="col-md-4">
+                            @Html.EditorFor(model => model.ContactNumber, new { htmlAttributes = new { @class = "outline form-control" } })
+                            @Html.ValidationMessageFor(model => model.ContactNumber, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Date, htmlAttributes: new { @class = "title control-label col-md-2" })
+                        <div class="col-md-4">
+                            @Html.EditorFor(model => model.Date, new { htmlAttributes = new { @class = "outline form-control" } })
+                            @Html.ValidationMessageFor(model => model.Date, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+
+                    <div class="form-group">
+                        <div class="col-md-offset-2 col-md-10">
+                            <input type="submit" value="Create" class="btn button-color" style="margin-top: 40px"/>
+                        </div>
+                    </div>
+                </div>}
+
+    <div class="back">
+        @Html.ActionLink("Back to List", "UserIndex", "User")
+    </div>
+</div>
+</body>
+
+    @section Scripts {
+        @Scripts.Render("~/bundles/jqueryval")
+    }
+
+
+

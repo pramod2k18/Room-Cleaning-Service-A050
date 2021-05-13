@@ -1,0 +1,65 @@
+﻿
+@{ ViewBag.Title = "Feedback Error"; }
+
+
+
+
+<style>
+    body {
+        /* background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.5)), url(/imgs/adminIndex.jpg);*/
+        background-color: #a4c3b2;
+        min-height: 100vh;
+        background-position: center;
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+        color: #fff;
+        display: flex;
+        flex-direction: column;
+        justify-content: stretch;
+    }
+
+    .headers {
+        margin-top: 150px;
+        margin-bottom: 50px;
+    }
+    .containers {
+        max-width: 100%;
+        margin: 0 50px;
+        padding: 0 1rem;
+    }
+
+    .back {
+        margin: 50px 0;
+    }
+  </style>
+
+
+<body>
+    <div class="containers">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <a class="navbar-brand" href="@Url.Action("Index","FrontPage")" style="font-size: 2.5em">Room Cleaning</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+
+        </div>
+    </nav>
+
+    <div class="headers">
+        <h2>Feedback Error</h2>
+    </div>
+
+
+    <div class=" alert alert-danger">
+        <strong>@ViewBag.MSG</strong>
+    </div>
+
+    <div class="back">
+        @Html.ActionLink("BACK", "ServiceDisplayUser", "User")
+
+    </div>
+        </div>
+</body>
+

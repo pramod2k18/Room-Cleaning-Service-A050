@@ -1,0 +1,109 @@
+﻿@model RoomCleaning.Models.Payment
+
+@{ ViewBag.Title = "Payment"; }
+
+
+
+<style>
+    body {
+        background-color: #a4c3b2;
+        min-height: 100vh;
+        background-position: center;
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+        color: #fff;
+        display: flex;
+        flex-direction: column;
+        justify-content: stretch;
+    }
+
+    .headers {
+        margin-top: 130px;
+        margin-bottom: 50px;
+        font-size: 2rem;
+    }
+
+    .button-color {
+        background-color: #1BBC9C;
+        border-radius: 30px;
+        color: white;
+        font-weight: bold;
+        width: 100px;
+        height: 40px;
+    }
+
+    .containers {
+        max-width: 100%;
+        margin: 0 50px;
+        padding: 0 1rem;
+    }
+
+    .back {
+        margin-top: 30px;
+        margin-bottom: 30px;
+        font-size: 1.05rem;
+    }
+</style>
+
+<body>
+    <div class="containers">
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+            <a class="navbar-brand" href="@Url.Action("Index","FrontPage")" style="font-size: 2.5em">Room Cleaning</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            </div>
+        </nav>
+
+        <div class="headers">
+            <h2>Payment</h2>
+        </div>
+
+        <div class="row row-cols-1 row-cols-md-2 g-4">
+            <div class="col">
+                <div class="card text-white bg-dark mb-3" style="max-width: 18rem;">
+                    <div class="card-header">PAY USING</div>
+                    <div class="card-body">
+                        <h6 class="card-title">CREDIT OR DEBIT CARD</h6>
+
+                        <div class="form-group">
+                            <div class="button col-md-offset-2 col-md-6">
+                                <input type="button"
+                                       value="PAY"
+                                       class="button-color"
+                                       onclick="location.href='@Url.Action("CardPayment", "User" )'" />
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <div class="col ml-0">
+                <div class="card text-white bg-dark mb-3" style="max-width: 18rem;">
+                    <div class="card-header">PAY USING</div>
+                    <div class="card-body">
+                        <h6 class="card-title">WALLET</h6>
+
+                        <div class="form-group" style="margin-left:0">
+                            <div class="button col-md-offset-2 col-md-10">
+                                <input type="button"
+                                       value="PAY"
+                                       class="button-color"
+                                       onclick="location.href='@Url.Action("WalletPayment", "User" )'" />
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="back">
+            @Html.ActionLink("BACK", "ServiceDisplayUser", "User")
+        </div>
+    </div>
+</body>
+
+

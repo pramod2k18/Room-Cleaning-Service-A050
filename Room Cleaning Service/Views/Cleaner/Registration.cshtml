@@ -1,0 +1,219 @@
+﻿
+@model RoomCleaning.Models.Cleaner
+
+@{ ViewBag.Title = "Registration"; }
+
+
+<style>
+    body {
+        background-image: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.7)), url(/imgs/Cleaning.jpg);
+        min-height: 100vh;
+        background-position: center;
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+        color: #fff;
+        display: flex;
+        flex-direction: column;
+        justify-content: stretch;
+        overflow-x: hidden;
+    }
+
+    .title {
+        font-size: 1.2rem;
+        margin-left: 20px;
+        text-align: left;
+    }
+
+    .button-color {
+        margin-top: 20px;
+        background-color: #1BBC9C;
+        border-radius: 30px;
+        color: white;
+        font-weight: bold;
+        width: 150px;
+        height: 50px;
+    }
+
+    .outline {
+        border-radius: 30px;
+        height: 50px;
+    }
+
+    .radio {
+        font-size: 20px;
+    }
+
+    input[type=radio] {
+        transform: scale(1.5);
+        margin-left: 5px;
+        margin-right: 15px;
+    }
+
+    input[type=text], [type=date], [type=email], [type=number], [type=tel] {
+        font-size: 20px;
+    }
+
+    input[type=password] {
+        font-size: 30px;
+    }
+
+    .headers {
+        margin-top: 60px;
+    }
+
+    hr {
+        border-top-color: white;
+    }
+</style>
+
+
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <a class="navbar-brand" href="@Url.Action("Index","FrontPage")" style="font-size: 2.5em">Room Cleaning</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="@Url.Action("Login","Cleaner")" style="font-size: 1.25em">Login</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+ 
+    @if (ViewBag.Status != null && Convert.ToBoolean(ViewBag.Status))
+    {
+        if (ViewBag.Message != null)
+        {
+            <div class=" alert alert-success" style="margin-top: 300px; padding: 20px; font-size: 1.15rem">
+                <strong>@ViewBag.Message</strong>
+            </div> }
+
+    } else
+    {
+
+        <section class="container-fluid px-0">
+
+            <div class="row align-items-center content">
+                <div class="col-md-12 text-left">
+                    <div class="row justify-content-center">
+                        <div class="col-10 col-lg-8 blurb mb-5 mb-md-0">
+                            <h2 class="headers">Cleaner Registration</h2>
+
+
+                            @using (Html.BeginForm())
+                            {
+                            @Html.AntiForgeryToken()
+
+                            <div class="form-horizontal">
+                                
+                                <hr />
+                                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+                                <div class="form-group">
+                                    <i class="fas fa-id-card fa-lg title"></i>@Html.LabelFor(model => model.CleanerId, htmlAttributes: new { @class = "title control-label col-md-6" })
+                                    <div class="col-md-10">
+                                        @Html.EditorFor(model => model.CleanerId, new { htmlAttributes = new { @class = "form-control outline input-lg" } })
+                                        @Html.ValidationMessageFor(model => model.CleanerId, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <i class="fas fa-user-alt fa-lg title"></i>@Html.LabelFor(model => model.FirstName, htmlAttributes: new { @class = "title control-label col-md-6" })
+                                    <div class="col-md-10">
+                                        @Html.EditorFor(model => model.FirstName, new { htmlAttributes = new { @class = "form-control outline input-lg" } })
+                                        @Html.ValidationMessageFor(model => model.FirstName, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <i class="fas fa-user-alt fa-lg title"></i>@Html.LabelFor(model => model.LastName, htmlAttributes: new { @class = "title control-label col-md-6" })
+                                    <div class="col-md-10">
+                                        @Html.EditorFor(model => model.LastName, new { htmlAttributes = new { @class = "form-control outline input-lg" } })
+                                        @Html.ValidationMessageFor(model => model.LastName, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <i class="fas fa-restroom fa-lg title"></i>@Html.LabelFor(model => model.Gender, htmlAttributes: new { @class = "title control-label col-md-6" })
+                                    <div class="radio col-md-10">
+                                        Male
+                                        @Html.RadioButtonFor(model => model.Gender, "Male")
+                                        Female
+                                        @Html.RadioButtonFor(model => model.Gender, "Female")
+                                        Others
+                                        @Html.RadioButtonFor(model => model.Gender, "Others")
+
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <i class="fas fa-birthday-cake fa-lg title"></i>@Html.LabelFor(model => model.DOB, htmlAttributes: new { @class = "title control-label col-md-6" })
+                                    <div class="col-md-10">
+                                        @Html.EditorFor(model => model.DOB, new { htmlAttributes = new { @class = "form-control outline input-lg" } })
+                                        @Html.ValidationMessageFor(model => model.DOB, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <i class="fas fa-phone fa-lg title"></i>@Html.LabelFor(model => model.ContactNumber, htmlAttributes: new { @class = "title control-label col-md-6" })
+                                    <div class="col-md-10">
+                                        @Html.EditorFor(model => model.ContactNumber, new { htmlAttributes = new { @class = "form-control outline input-lg" } })
+                                        @Html.ValidationMessageFor(model => model.ContactNumber, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <i class="fas fa-map-marker-alt fa-lg title"></i>@Html.LabelFor(model => model.Location, htmlAttributes: new { @class = "title control-label col-md-6" })
+                                    <div class="col-md-10">
+                                        @Html.EditorFor(model => model.Location, new { htmlAttributes = new { @class = "form-control outline input-lg" } })
+                                        @Html.ValidationMessageFor(model => model.Location, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <i class="fas fa-unlock fa-lg title"></i>@Html.LabelFor(model => model.Password, htmlAttributes: new { @class = "title control-label col-md-6" })
+                                    <div class="col-md-10">
+                                        @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "form-control outline input-lg" } })
+                                        @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <i class="fas fa-lock fa-lg title"></i>@Html.LabelFor(model => model.ConfirmPassword, htmlAttributes: new { @class = "title control-label col-md-6" })
+                                    <div class="col-md-10">
+                                        @Html.EditorFor(model => model.ConfirmPassword, new { htmlAttributes = new { @class = "form-control outline input-lg" } })
+                                        @Html.ValidationMessageFor(model => model.ConfirmPassword, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <div class="col-md-offset-2 col-md-10">
+                                        <input type="submit" value="Submit" class="btn button-color" />
+                                    </div>
+                                </div>
+                            </div> 
+                            if (ViewBag.Message != null)
+                            {
+                            <div class=" alert alert-danger" style="color:red">
+                                <strong>Error : @ViewBag.Message</strong>
+                            </div>}
+                            }
+                            
+
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>}
+</body>
+
+@section Scripts {
+    <script src="~/Scripts/jquery-3.4.1.min.js"></script>
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+}
+

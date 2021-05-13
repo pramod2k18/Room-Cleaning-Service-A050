@@ -1,0 +1,137 @@
+﻿
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - Room.Cleaning</title>
+    <!-- normalize css -->
+    <link rel="stylesheet" href="resources/normalize.css">
+    <!-- font -->
+    <link rel="stylesheet" href="resources/font.css">
+    <!-- font awesome cdn -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css"
+          integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA=="
+          crossorigin="anonymous" />
+    <!-- magnific popup -->
+    <link rel="stylesheet" href="resources/Magnific-Popup-master/dist/magnific-popup.css">
+    <!-- owl carousel -->
+    <link rel="stylesheet" href="resources/OwlCarousel2-2.3.4/dist/assets/owl.carousel.css">
+    <link rel="stylesheet" href="resources/OwlCarousel2-2.3.4/dist/assets/owl.theme.default.css">
+
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+
+</head>
+<body>
+    @*<div class="navbar navbar-inverse navbar-fixed-top">
+            <div class="container">
+                <div class="navbar-header">
+                                   @Html.ActionLink("Room.Cleaning", "Index", "FrontPage", new { area = "" }, new { @class = "navbar-brand" })
+                </div>
+                <div class="navbar-collapse collapse">
+                    <ul class="nav navbar-nav">
+                        <li>@Html.ActionLink("User Login", "Login", "User")</li>
+                        <li>@Html.ActionLink("Admin", "Login", "Admin")</li>
+                        <li>@Html.ActionLink("Cleaner", "Login", "Cleaner")</li>
+                    </ul>
+                    @Html.Partial("_LoginPartial")
+                </div>
+            </div>
+        </div>*@
+    @*<nav class="navbar">
+        <div class="container">
+            <div class="brand-and-toggler">
+                <a href="@Url.Action("Index", "FrontPage")" class="navbar-brand">
+                    Room<span>.</span>Cleaning
+                </a>
+                <button type="button" class="navbar-toggler" id="navbar-toggler">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+
+            <div class="navbar-collapse">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a href="@Url.Action("Login", "User")" class="nav-link">User Login</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="@Url.Action("Login", "Admin")" class="nav-link">Admin</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="@Url.Action("Login", "Cleaner")" class="nav-link">Cleaner</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>*@
+    <div class="containers body-content">
+        @RenderBody()
+        @*<hr />
+        <footer>
+            <p>&copy; @DateTime.Now.Year - Room.Cleaning</p>
+        </footer>*@
+    </div>
+
+    @Scripts.Render("~/bundles/jquery")
+    <script src="http://ajax.aspnetcdn.com/ajax/jquery/jquery-1.8.0.min.js" type="text/javascript">
+
+        $(document).ready(function () {
+
+            // wow initiation
+            new WOW().init();
+
+            // navigation bar toggle
+            $('#navbar-toggler').click(function () {
+                $('.navbar-collapse').slideToggle(400);
+            });
+
+            // navbar bg change on scroll
+            $(window).scroll(function () {
+                let pos = $(window).scrollTop();
+                if (pos >= 100) {
+                    $('.navbar').addClass('cng-navbar');
+                } else {
+                    $('.navbar').removeClass('cng-navbar');
+                }
+            });
+
+            // team carousel
+            $('.team .owl-carousel').owlCarousel({
+                loop: true,
+                margin: 10,
+                autoplay: true,
+                dots: true,
+                nav: false,
+                responsiveClass: true,
+                responsive: {
+                    0: {
+                        items: 1
+                    },
+                    600: {
+                        items: 2
+                    },
+                    1000: {
+                        items: 3
+                    }
+                }
+            });
+
+            // faq accordion
+            $('.faq-head').each(function () {
+                $(this).click(function () {
+                    $(this).next().toggleClass('show-faq-content');
+                    let icon = $(this).children('span').children("i").attr('class');
+
+                    if (icon == "fas fa-plus") {
+                        $(this).children('span').html('<i class = "fas fa-minus"></i>');
+                    } else {
+                        $(this).children('span').html('<i class = "fas fa-plus"></i>');
+                    }
+                });
+            });
+
+    </script>
+    @*@Scripts.Render("~/bundles/bootstrap")*@
+    @RenderSection("scripts", required: false)
+</body>
+

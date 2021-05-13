@@ -1,0 +1,143 @@
+﻿@model IEnumerable<RoomCleaning.Models.Feedback>
+
+@{ ViewBag.Title = "FeedbackDisplay"; }
+
+
+<style>
+    body {
+        /* background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.5)), url(/imgs/adminIndex.jpg);*/
+        background-color: #a4c3b2;
+        min-height: 100vh;
+        background-position: center;
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+        color: #fff;
+        display: flex;
+        flex-direction: column;
+        justify-content: stretch;
+    }
+
+    .headers {
+        margin-top: 150px;
+        margin-bottom: 50px;
+    }
+
+    .move {
+        margin-top: 50px;
+        margin-left: 210px;
+    }
+
+    .move-pdf {
+        margin-top: 50px;
+        /*margin-left: 210px;*/
+    }
+
+    .button-color {
+        background-color: #1BBC9C;
+        border-radius: 30px;
+        color: white;
+        font-weight: bold;
+        width: 150px;
+        height: 50px;
+    }
+
+    .back {
+        margin-top: 50px;
+    }
+
+    .containers {
+        max-width: 100%;
+        margin: 0 50px;
+        padding: 0 1rem;
+    }
+
+    .centered {
+        margin-left: 100px;
+    }
+
+
+</style>
+
+
+<body>
+    <div class="containers">
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+            <a class="navbar-brand" href="@Url.Action("Index","FrontPage")" style="font-size: 2.5em">Room Cleaning</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+
+            </div>
+        </nav>
+
+        <div class="headers">
+            <h2>Feedback Display</h2>
+        </div>
+
+        @if (Model.Count() != 0)
+        {
+    <table class="table table-dark table-striped table-hover" style="font-size: 1.15rem">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.UserId)
+            </th>
+
+            <th>
+                @Html.DisplayNameFor(model => model.OrderId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.RatingDusting)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.RatingVacuuming)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.OverallImpression)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.AdditionalInformation)
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.UserId)
+        </td>
+
+        <td>
+            @Html.DisplayFor(modelItem => item.OrderId)
+        </td>
+
+        <td>
+            @Html.DisplayFor(modelItem => item.RatingDusting)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.RatingVacuuming)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.OverallImpression)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.AdditionalInformation)
+        </td>
+    </tr>
+}
+
+    </table> }
+                else
+                {
+    <div class="in-center">
+        <h2 style="color:white;">No Feedback to display.</h2><br />
+
+    </div>}
+
+        <div class="back">
+            @Html.ActionLink("BACK", "Index")
+        </div>
+    </div>
+</body>
